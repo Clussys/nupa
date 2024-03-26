@@ -24,8 +24,10 @@ demo/
 │   └── protocols.jpg
 ├── ip
 │   ├── cxl
+│   │   ├── nupanet.ko
 │   │   └── README.md
 │   └── pcie
+│       ├── nupanet.ko
 │       └── README.md
 ├── rdma
 │   ├── cxl
@@ -61,6 +63,47 @@ In the `rdma` folder, we will directly build RDMA devices on the CXL network and
 
 ### UEC Folder
 UEC? This is for the future, but since the future has not arrived yet, let's reserve a spot for UEC.
+
+```
+         -----------------------------------------------
+        |       |          |  Latency     |  Cloud      |
+ App    |  HPC  |  LLM     |  Senstive    |  Native     |
+        |  APP  |  APP     |  APP         |  APP        |
+         ------------------------------------------------
+        |                         |                     |
+Protocol|    RDMA       ----------     TCP/UDP/IP       |
+        |              |                                |
+         ------------------------------------------------
+        |              |                                |
+ HW     |     IB       |              MAC               |
+        |              |                                |
+         -----------------------------------------------
+               Current Application and Networking
+
+```
+with the help of UEC, the community aiming to do like this:
+
+```
+         -----------------------------------------------
+        |       |          |  Latency     |  Cloud      |
+  App   |  HPC  |  LLM     |  Senstive    |  Native     |
+        |  APP  |  APP     |  APP         |  APP        |
+         ------------------------------------------------
+        |             |              |                  |
+Protocl |    RDMA     |     UEC      |    TCP/UDP/IP    |
+        |             |              |                  |
+         ------------------------------------------------
+        |         |   PCIe    |                         |
+ HW     |     IB  |   CXL     |          MAC            |
+        |         |   UCIe    |                         |
+         -----------------------------------------------
+                       ^                       
+                     Clussys
+
+      The future of UEC Networking, with where Clussys sits
+
+```
+However UEC is still in its very early stage. Clussys will keep a close eye on its development.
 
 ### VMS Folder
 Finally, our main attraction, the `vms` folder, our software development environment. As the name suggests, this is a development and verification environment based on virtual machines. Of course, in virtual machines, performance expectations should be moderated. The goal is to demonstrate the credibility of the technology. Within the `vms` directory, we have built two environments for CXL and PCIe. It is worth mentioning that CXL is a rapidly evolving technology with high kernel requirements. Therefore, we have selected the 6.3 kernel series. While new kernels offer new features, stability needs collective validation. For PCIe, a long-standing technology, we have opted for the 5.15 kernel. In each virtual machine environment, you can run `launch.sh` for usage and experience. Additionally, a `readme` file is available for reference.

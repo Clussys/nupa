@@ -11,7 +11,7 @@ On **node1**
 
 ```
 cd ~/ip_over_cxl
-./install.sh 0
+sudo ./install.sh 0
 # suppose enpXsY is the NIC name nupanet driver generated, config NIC using:
 ifconfig enpXsY 192.168.8.100/24
 
@@ -21,7 +21,7 @@ ifconfig enpXsY 192.168.8.100/24
 On **node2**
 ```
 cd ~/ip_over_cxl
-./install.sh 1
+sudo ./install.sh 1
 ```
 
 

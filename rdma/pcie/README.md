@@ -4,32 +4,16 @@ Along with the kernel modules, two virtual machines run on qemu are provided, wh
 In this README, We take a example of two-host system to demonstrate the usage of the rdma over PCIe.
 
 # usage
-1) Copy the kernel modules into the two virtual machines.
-2) Install nupa_net.ko
-   On one virtual machne, run:
+We call the anyone among the two hosts VM0, and the other VM1.
+1) cd /root/rdma
+2) run script
+   on VM0:
+   ```./install.sh 0
    ```
-   sudo insmod nupa_net.ko local_port=x
+   On VM1:
+   ```./install.sh 1
    ```
-   here x = 0 or 1. we names the virtual machine VM0, on which x is set to 0, and the other VM1, on which x is set to 1.
-   when completed, a ethernet interface will appear as nupa_net0 on both VMs.
-3) Set the ipaddr
-   On VM0, run:
-   ```
-   sudo ifconfig nupa_net0 192.168.112.1
-   ```
-   On VM1, run:
-   ```
-   sudo ifconfig nupa_net0 192.168.112.2
-   ```
-4) Install rdma_cxl.ko
-   On both VMs, run:
-   ```
-   sudo modprobe ib_core
-   sudo insmod ib_uverbs.ko
-   sudo insmod rdma_cxl.ko
-   ```
-   When this step completed, an ib device named nupa_rdma0 on both VMs will appear.
-5) Have a look
+3) Have a look
    run: 
    ```
     ibv_devinfo
@@ -55,5 +39,5 @@ In this README, We take a example of two-host system to demonstrate the usage of
                            link_layer:           Ethernet
    ```
    This is the details of nupa_rdma0 on VM0.
-6) Performance test
+4) Performance test
    You can use any tool in perftest to do the bandwidth or latency testing.
