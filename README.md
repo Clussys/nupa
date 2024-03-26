@@ -110,5 +110,5 @@ NUPA Community -- TODO
 
 ## Contact
 Finally, thank you all for using and experiencing our technology. We hope to build an open ecosystem on CXL/PCIe technology and contribute to large-scale models and AGI.
-Thanks to contributors @zhangg, @zhoujm, and @leo.
+Thanks to contributors @yangg, @zhoujm, and @leo.
 If you have any questions, feel free to email us at: info@clussys.com
