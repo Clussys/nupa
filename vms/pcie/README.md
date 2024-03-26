@@ -25,8 +25,8 @@ For PCIe showcase, we use a ubuntu server image based on linux-5.15.x, download 
 
 ```
 wget XXXX
-cp XXXX node1.qcow2
-cp node1.qcow2 node2.qcow2
+cp XXXX node0.img
+cp node0.img node1.img
 ```
 
  # 3. Run qemu
@@ -56,4 +56,4 @@ Now we can run **IP** or **RDMA** Test.
 (2) [RDMA over PCIe](../../rdma/pcie/README.md)
 
 
-Go to corresponding directory, and do the test accoding to the README.md inside. 
+Go to corresponding directory, and do the test according to the README.md inside. 

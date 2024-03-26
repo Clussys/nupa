@@ -9,7 +9,7 @@ As Clussys, unlike traditional Ethernet network infrastructures, we will complet
 
 In small-scale clusters, such as the Nvidia-defined superpod clusters, we are particularly concerned with high-speed, low-latency communication between devices. Just like traditional networks, the key elements for improving communication performance include hardware control as much as possible, streamlined data flow (zero copy), and excellent flow control. To simplify the model, we compare network protocols and aim to achieve data transmission by leveraging existing hardware features as much as possible.
 
-![protocols](protocols.png)
+![protocols](imgs/protocols.jpg)
 
 In the figure above, we can see that traditional network card devices introduce approximately 1-3us of additional latency. Additionally, data needs to be constantly copied between user space, kernel space, and devices. While various optimization techniques and technology modules can simplify this data movement, the results are not yet satisfactory, and we need something better.
 
@@ -18,17 +18,24 @@ In a CXL network, data movement can directly utilize the DMA of the CXL controll
 To expedite ecosystem development and gather feedback from priority engineers, we are eager to share our achievements and research progress with the broader developer community. In this repository, we will gradually unveil our advancements. The structure of this repository is as follows:
 
 ```
-nupa/
+li@ubuntu:~/workspace/project/demo$ tree .
+demo/
+├── imgs
+│   └── protocols.jpg
 ├── ip
 │   ├── cxl
 │   │   └── README.md
 │   └── pcie
 │       └── README.md
-├── protocols.png
 ├── rdma
 │   ├── cxl
+│   │   ├── nupa_net.ko
+│   │   ├── rdma_cxl.ko
 │   │   └── README.md
 │   └── pcie
+│       ├── ib_uverbs.ko
+│       ├── nupa_net.ko
+│       ├── rdma_nupa.ko
 │       └── README.md
 ├── README.md
 ├── uec
@@ -42,7 +49,6 @@ nupa/
         ├── node1.sh
         ├── node2.sh
         └── README.md
-
 ```
 
 To accelerate ecosystem development and incorporate the opinions and suggestions of priority engineers, we are eager to share our achievements and R&D progress with developers. In this repository, we will gradually open up our progress. The structure of this repository is as follows:
@@ -57,7 +63,7 @@ In the `rdma` folder, we will directly build RDMA devices on the CXL network and
 UEC? This is for the future, but since the future has not arrived yet, let's reserve a spot for UEC.
 
 ### VMS Folder
-Finally, our main attraction, the `vms` folder, our software development environment. As the name suggests, this is a development and verification environment based on virtual machines. Of course, in virtual machines, performance expectations should be moderated. The goal is to demonstrate the credibility of the technology. Within the `vms` directory, we have built two environments for CXL and PCIe. It is worth mentioning that CXL is a rapidly evolving technology with high kernel requirements. Therefore, we have selected the 6.3 kernel series. While new kernels offer new features, stability needs collective validation. For PCIe, a long-standing technology, we have opted for the 5.15 kernel. In each virtual machine environment, you can run scprits for usage and experience. Additionally, a `readme` file is available for reference.
+Finally, our main attraction, the `vms` folder, our software development environment. As the name suggests, this is a development and verification environment based on virtual machines. Of course, in virtual machines, performance expectations should be moderated. The goal is to demonstrate the credibility of the technology. Within the `vms` directory, we have built two environments for CXL and PCIe. It is worth mentioning that CXL is a rapidly evolving technology with high kernel requirements. Therefore, we have selected the 6.3 kernel series. While new kernels offer new features, stability needs collective validation. For PCIe, a long-standing technology, we have opted for the 5.15 kernel. In each virtual machine environment, you can run `launch.sh` for usage and experience. Additionally, a `readme` file is available for reference.
 
 Finally, we gave our architecture a name, NUPA :-)
 
@@ -80,11 +86,11 @@ If physics layer is PCIe, NUPA-NET is also known as **IP over PCIe**.
 
 If physics layer is CXL, NUPA-NET is also known as **IP over CXL**.
 
-More details please refer to [NUPA-NET](./NUPA-NET-VM.md)
+More details please refer to[IP over PCIe](ip/pcie/README.md) or [IP over CXL](ip/cxl/README.md)
 ## NUPA-RDMA
 NUPA-RDMA is the RDMA device driver specified for Clussys ASIC to privide standard RDMA interface, users could use standard RDMA libraries to access the RDMA interface.
 
-More details please refer to [NUPA-RDMA](./NUPA-RDMA.md)
+More details please refer to [RDMA over PCIe](rdma/pcie/README.md.md) or [RDMA over CXL](rdma/cxl/README.md)
 
 
 ## How to setup and run
