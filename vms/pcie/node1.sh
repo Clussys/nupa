@@ -1,5 +1,5 @@
 sudo /opt/qemu/bin/qemu-system-x86_64 \
-	-drive file=./node0.img,format=qcow2,index=0,media=disk,id=hd \
+	-drive file=./pcie_node1.qcow2,format=qcow2,index=0,media=disk,id=hd \
 	-m 4G,slots=4,maxmem=8G \
 	-smp 2 \
 	-nographic \

@@ -24,9 +24,9 @@ sudo make install
 For PCIe showcase, we use a ubuntu server image based on linux-5.15.x, download its qcow2 img using :
 
 ```
-wget XXXX
-cp XXXX node0.img
-cp node0.img node1.img
+wget http://43.133.203.111/pcie.qcow2
+cp pcie.qcow2 pcie_node1.qcow2
+cp pcie_node1.qcow2 pcie_node2.qcow2
 ```
 
  # 3. Run qemu
@@ -34,7 +34,7 @@ cp node0.img node1.img
 ./node1.sh
 # node1 log in, username is root, password is ubuntu
 # if NIC is not set, try set as such that you can log in using ssh , enpXsY is your NIC name, please modify accordingly
-ifconfig enpXsY 10.0.2.25
+ifconfig enpXsY 10.0.2.15
 ifconfig enpXsY up
 
 ssh root@127.0.0.1 -p 2221
@@ -42,7 +42,7 @@ ssh root@127.0.0.1 -p 2221
 ./node2.sh
 # node2 log in, username is root, password is ubuntu
 # if NIC is not set, try set as such that you can log in using ssh , enpXsY is your NIC name, please modify accordingly
-ifconfig enpXsY 10.0.2.25
+ifconfig enpXsY 10.0.2.15
 ifconfig enpXsY up
 ssh root@127.0.0.1 -p 2222
  ```

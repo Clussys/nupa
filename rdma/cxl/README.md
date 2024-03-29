@@ -8,10 +8,12 @@ We call the anyone among the two hosts VM0, and the other VM1.
 1) cd /home/fedora/rdma
 2) run script
    on VM0:
-   ```./install.sh 0
+   ```
+   ./install.sh 0
    ```
    On VM1:
-   ```./install.sh 1
+   ```
+   ./install.sh 1
    ```
 3) Have a look
    run: 

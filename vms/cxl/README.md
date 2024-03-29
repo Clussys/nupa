@@ -24,9 +24,9 @@ sudo make install
 For CXL showcase, we use a fedora image based on linux-6.x.x, download its qcow2 img using :
 
 ```
-wget XXXX
-cp XXXX node1.qcow2
-cp node1.qcow2 node2.qcow2
+wget http://43.133.203.111/cxl.qcow2
+cp cxl.qcow2 cxl_node1.qcow2
+cp cxl_node1.qcow2 cxl_node2.qcow2
 ```
 
  # 3. Run qemu
